@@ -1,0 +1,35 @@
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  
+jobs:
+  build:
+    name: Build (${{ matrix.os }} - ${{ matrix.arch }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, windows-latest ]
+        arch: [ x64 ]
+        
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: setup Nodejs
+        uses: actions/setup-node@v3.6.0
+        with:
+          node-versions: 18.x
+          cache: yarn
+          
+      - name: yarn install
+        run: yarn --frozen-lockfile --network-timeout 100000
+        
+      - name: make executable
+        run: yarn make --arch=${{ matrix.arch }}
+      
+      - name: archive
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ matrix.os }}
+          path: out/make/**/*
