@@ -1,4 +1,3 @@
-import { count } from "console";
 import { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 
