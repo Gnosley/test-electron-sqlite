@@ -19,7 +19,7 @@ jobs:
       - name: setup Nodejs
         uses: actions/setup-node@v3.6.0
         with:
-          node-versions: 18.x
+          node-version: 18.x
           cache: yarn
           
       - name: yarn install

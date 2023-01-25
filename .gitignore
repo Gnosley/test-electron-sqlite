@@ -90,3 +90,6 @@ out/
 
 # sqlite file
 ./test
+test.db
+test.db-shm
+test.db-wal
