@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 
-export function App(props) {
-  const [counter, setCounter] = useState({ loading: true });
+export function App() {
+  const [counter, setCounter] = useState<{ loading: boolean; value?: number }>({
+    loading: true,
+  });
   useEffect(() => {
     setCounter({ loading: true });
     window._api
